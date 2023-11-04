@@ -8,9 +8,20 @@ require_once __DIR__ . "/GetConnection.php";
 $connection = getConnection();
 
 // $username = "admin'; #"; //dengan penulisan hardcode seperti ini pada program maka bisa akan terjadi sql injection
-$password = "admin";
+//Solusi untuk mengatasi sql injection
 
-$sql = "SELECT * FROM admin WHERE username = '$username' AND password='$password'";
+/*
+Function query() dan execute() tidak bisa menangani celah SQL Injection, jadi kita harus menanganinya secara manual
+Direkomendasikan menggunakan function query() dan execute() jika memang kita tidak butuh parameter dari input user ketika membuat perintah SQL 
+Jika membutuhkan parameter dari input user, kita wajib menggunakan function prepare(sql) yang akan kita bahas selanjutnya
+Atau bisa juga memastikan input user aman dengan menggunakan function quote()
+
+*/
+
+$username = $connection->quote("admin'; #");
+$password = $connection->quote("admin");
+
+$sql = "SELECT * FROM admin WHERE username = $username AND password= $password";
 
 $statement = $connection->query($sql);
 
