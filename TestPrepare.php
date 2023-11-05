@@ -7,11 +7,11 @@ $connection = getConnection();
 $username = "Kumbang";
 $password = "Kumbang123";
 
-$sql = "SELECT * FROM admin WHERE username = :username AND password = :password";
+$sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
 $statement = $connection->prepare($sql);
 //Jadi dengan menggunakan prepare itu lebih aman karena input parameter dari user sebenarnya
-$statement->bindParam("username", $username);
-$statement->bindParam("password", $password);
+$statement->bindParam(1, $username);
+$statement->bindParam(2, $password);
 $statement->execute();
 
 $success = false;
