@@ -4,10 +4,10 @@ require_once __DIR__ . "/GetConnection.php";
 
 $connection = getConnection();
 
-$connection->exec("INSERT INTO comments(email, comment) VALUES('abie@gmail.com', 'Hello Test')");
+$connection->exec("INSERT INTO comments(email, comment) VALUES('abietest@gmail.com', 'Hi')");
 $id = $connection->lastInsertId();
 
-var_dump($id);
+echo $id . PHP_EOL;
 
 $connection = null;
 
