@@ -10,9 +10,9 @@ $password = "Kumbang123";
 $sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
 $statement = $connection->prepare($sql);
 //Jadi dengan menggunakan prepare itu lebih aman karena input parameter dari user sebenarnya
-$statement->bindParam(1, $username);
-$statement->bindParam(2, $password);
-$statement->execute();
+// $statement->bindParam(1, $username);
+// $statement->bindParam(2, $password);
+$statement->execute([$username, $password]);
 
 $success = false;
 $find_user = null;
